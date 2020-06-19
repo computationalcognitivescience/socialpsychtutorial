@@ -1,6 +1,6 @@
 ---
 layout: index
-title: About
+title: Welcome
 permalink: /
 sidebar_link: true
 sidebar_sort_order: 1
@@ -19,12 +19,10 @@ This open textbook is released under a [CC-BY 4.0 license](https://creativecommo
 
 This book is written in [Jekyll](https://jekyllrb.com) using the [Jekyll-Hydeout](https://github.com/fongandrew/hydeout) theme released under an [MIT license](https://github.com/fongandrew/hydeout/blob/master/LICENSE.md). The source code is available on Github [here](https://github.com/computationalcognitivescience/lovelace).
 
-# How to cite this book
+# Main paper
 
 Blokpoel, M. & van Rooij, I. (2020). Theoretical modeling for psychology and cognitive science. Retrieved year-month-day from [URL].
 
-# In-progress
-At present this book is a living document, some sections have been written while others are still under construction. If the parts you are interested in aren't finished yet, please check back at a later time. Feedback and suggestions are welcome.
 
 # About the authors
 [Mark Blokpoel](http://www.markblokpoel.com) is a computer scientist and computational cognitive scientist. [Iris van Rooij](irisvanrooijcogsci.com) is a psychologist and cognitive scientist. Both authors are based at Donders Institute for Brain, Cognition, and Behaviour, Radboud University. Van Rooij and Blokpoel previously co-authored [Cognition and Intractability](https://cognitionandintractability.com) with Johan Kwisthout and Todd Wareham.

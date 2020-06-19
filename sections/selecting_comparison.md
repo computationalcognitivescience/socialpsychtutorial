@@ -1,9 +1,9 @@
 ---
 layout: index
-title: Simulations for Dialogue 1 - Comparing model behavior
+title: Dialogue 1 - Comparing models
 permalink: /dialogue1_comparison/
-sidebar_link: false
-sidebar_sort_order: 99
+sidebar_link: true
+sidebar_sort_order: 5
 ---
 
 <div id="toc-wrapper" markdown="1">
@@ -14,7 +14,7 @@ sidebar_sort_order: 99
 We take two approaches to analyze differences in model behavior. First, we
 explore model behavior by hand. Second, we explore it by large scale simulation.
 
-# Comparing model behaviour by hand
+# Comparing model behavior by hand
 If you were already comparing the three models on the previous page, you
 may have noticed differences in behavior. If not, you can use the following
 code box to try different groups and see what selection of invitees each
@@ -57,12 +57,13 @@ println(s"SI6 selects: $out6")
 
 In the simulation experiment below, we randomly create groups of people and
 their relationships to each other and the host. We can do this ```sampleSize```
-times. For each group of friends generated, we ask three agents (corresponding
-to the three models SI4, SI5 and SI6) to select invitees, resulting in three
-(possibly different) outputs.
+times. For each group of friends generated, we ask three agents (hosts
+corresponding to the three models SI4, SI5 and SI6) to select invitees,
+resulting in three (possibly different) outputs.
 
-We then perform some data analysis computing a property of the input graph $$P$$,
-viz. the ratio of likes and dislikes; and computing two example dependent variables:
+We then perform some data analysis by computing a property of the input,
+viz. the ratio of likes and dislikes; and by computing two example dependent
+variables:
 
 1. The average number of pairs that like each other amongst invitees; and
 2. The number of invited guests.
@@ -141,8 +142,3 @@ render(traces = List(Trace("SI4", si4Data), Trace("SI5", si5Data), Trace("SI6", 
 
 ```
 {% endscalafiddle %}
-
-
-|Previous|Next|
-|:--- | ---:|
-|[Simulations for Dialogue 1](/dialogue1) |[Conclusions](/dialogue1_conclusions)|

@@ -2,7 +2,7 @@
 layout: index
 title: Programming in Scala
 permalink: /programming/
-sidebar_link: true
+sidebar_link: false
 sidebar_sort_order: 3
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: index
-title: Simulations for Dialogue 1
+title: Dialogue 1 - Individual models
 permalink: /dialogue1/
 sidebar_link: true
 sidebar_sort_order: 4
@@ -10,7 +10,6 @@ sidebar_sort_order: 4
 * Table of contents
 {:toc}
 </div>
-
 
 # Selecting Invitees V4
 
@@ -170,8 +169,3 @@ println(h2("Output:"))
 println(out)
 ```
 {% endscalafiddle %}
-
-
-||Next|
-|:--- | ---:|
-| |[Comparing model behavior](/dialogue1_comparison)|

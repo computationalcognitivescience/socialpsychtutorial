@@ -70,7 +70,9 @@ variables:
 
 Try to play around with the parameters ```groupSize``` and ```sampleSize```
 and see what changes. For example, increasing the number of samples, decreases
-the variation in the data.
+the variation in the data. *Note: Group size will require exponentially
+more computation time, don't try large values ($$>>15$$) unless you have time
+until the end of the universe.*
 
 {% scalafiddle template="PersonsWithFormalisations" %}
 ```scala

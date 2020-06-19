@@ -106,6 +106,7 @@ case object VegaRenderer {
         "type": "fit",
         "contains": "padding"
       },
+      "title": "$title",
       "data": { "values": [
           ${traces.map(_.toVegaString).mkString(",\n")}
       ]},
@@ -115,8 +116,8 @@ case object VegaRenderer {
           "width": 300,
           "mark": "bar",
           "encoding": {
-            "x": {"field": "$xValue", "type": "ordinal"},
-            "y": {"field": "$yValue", "type": "quantitative"},
+            "x": {"field": "$xValue", "type": "ordinal", "title": "$xLabel"},
+            "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"},
             "color": {
               "field": "label",
               "type": "nominal",
@@ -133,7 +134,7 @@ case object VegaRenderer {
               "field": "$xValue", "type": "nominal", "spacing": 0
             },
             "x": {"field": "label", "type": "ordinal", "axis": {"title": ""}},
-            "y": {"field": "$yValue", "type": "quantitative"},
+            "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"},
             "color": {
               "field": "label",
               "type": "nominal",
@@ -145,7 +146,12 @@ case object VegaRenderer {
           s"""
           "width": 300,
           "encoding": {
-              "x": {"field": "$xValue", "type": "ordinal"},
+              "x": {
+                "field": "$xValue",
+                "type": "ordinal",
+                "axis": {"format": ".2f", "titlePadding": 20},
+                "title": "$xLabel"
+              },
               "color": {
                 "field": "label",
                 "type": "nominal",
@@ -156,20 +162,26 @@ case object VegaRenderer {
             {
               "mark": "errorbar",
               "encoding": {
-                "y": {"field": "$yValue", "type": "quantitative"}
+                "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"}
               }
             },
             {
               "mark": "${plotType.toString.toLowerCase}",
               "encoding": {
-                "y": {"field": "$yValue", "aggregate": "mean", "type": "quantitative"}
+                "y": {
+                  "field": "$yValue",
+                  "aggregate": "mean",
+                  "type": "quantitative",
+                  "axis": {"format": ".2f", "titlePadding": 20},
+                  "title": "$yLabel"
+                }
               }
             }
           ]
           """
         }
       }
-  }.replace(" ","").replace("\n","")
+  }.replace("\n","")
 
   def genGraphSpec(graph: Graph): String = {
     s"""

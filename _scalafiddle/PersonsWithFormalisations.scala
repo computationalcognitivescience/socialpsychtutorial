@@ -149,7 +149,7 @@ case object VegaRenderer {
               "x": {
                 "field": "$xValue",
                 "type": "ordinal",
-                "axis": {"format": ".2f", "titlePadding": 30},
+                "axis": {"format": ".2f", "titlePadding": 20},
                 "title": "$xLabel"
               },
               "color": {
@@ -172,7 +172,7 @@ case object VegaRenderer {
                   "field": "$yValue",
                   "aggregate": "mean",
                   "type": "quantitative",
-                  "axis": {"format": ".2f", "titlePadding": 30},
+                  "axis": {"format": ".2f", "titlePadding": 20},
                   "title": "$yLabel"
                 }
               }
@@ -181,7 +181,7 @@ case object VegaRenderer {
           """
         }
       }
-  }.replace(" ","").replace("\n","")
+  }.replace("\n","")
 
   def genGraphSpec(graph: Graph): String = {
     s"""

@@ -12,7 +12,7 @@ sidebar_sort_order: 1
 </div>
 
 # Welcome!
-Welcome to this online, open and interactive, textbook on theoretical modeling for psychology and cognitive science. Check out the Table of Contents and the information below.
+Welcome to this online, open and interactive, textbook on theoretical modeling for psychology and cognitive science. Check out the Table of Contents and the information below..
 
 # License
 This open textbook is released under a [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/) and the Scala software used herein is released under an [UGN GPL v3 license]() or any later version. You are free to reuse, revise, and adapt this textbook, in whole or in part, as long as appropriate credit is given to its authors.

@@ -49,10 +49,10 @@ case object VegaRenderer {
           requirejs.config({
             baseUrl: 'https://cdn.jsdelivr.net/npm/',
             paths: {
-              "vega-embed":  "vega-embed@3?noext",
+              "vega-embed":  "vega-embed@6?noext",
               "vega-lib": "vega-lib?noext",
-              "vega-lite": "vega-lite@2?noext",
-              "vega": "vega@3?noext"
+              "vega-lite": "vega-lite@4?noext",
+              "vega": "vega@5?noext"
             }
           });
 
@@ -144,16 +144,28 @@ case object VegaRenderer {
         } else if(plotType==PlotType.Line || plotType==PlotType.Point) {
           s"""
           "width": 300,
-          "mark": "${plotType.toString.toLowerCase}",
           "encoding": {
-            "x": {"field": "$xValue", "type": "ordinal"},
-            "y": {"field": "$yValue", "type": "quantitative"},
-            "color": {
-              "field": "label",
-              "type": "nominal",
-              "legend": {"orient": "bottom", "title": null}
+              "x": {"field": "$xValue", "type": "ordinal"},
+              "color": {
+                "field": "label",
+                "type": "nominal",
+                "legend": {"orient": "bottom", "title": null}
+              }
+          },
+          "layer": [
+            {
+              "mark": "errorbar",
+              "encoding": {
+                "y": {"field": "$yValue", "type": "quantitative"}
+              }
+            },
+            {
+              "mark": "${plotType.toString.toLowerCase}",
+              "encoding": {
+                "y": {"field": "$yValue", "aggregate": "mean", "type": "quantitative"}
+              }
             }
-          }
+          ]
           """
         }
       }
@@ -318,5 +330,3 @@ case object VegaRenderer {
 
 import Math._
 import VegaRenderer._
-
-////

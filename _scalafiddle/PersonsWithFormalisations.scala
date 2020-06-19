@@ -106,6 +106,7 @@ case object VegaRenderer {
         "type": "fit",
         "contains": "padding"
       },
+      "title": "$title",
       "data": { "values": [
           ${traces.map(_.toVegaString).mkString(",\n")}
       ]},
@@ -115,8 +116,8 @@ case object VegaRenderer {
           "width": 300,
           "mark": "bar",
           "encoding": {
-            "x": {"field": "$xValue", "type": "ordinal"},
-            "y": {"field": "$yValue", "type": "quantitative"},
+            "x": {"field": "$xValue", "type": "ordinal", "title": "$xLabel"},
+            "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"},
             "color": {
               "field": "label",
               "type": "nominal",
@@ -133,7 +134,7 @@ case object VegaRenderer {
               "field": "$xValue", "type": "nominal", "spacing": 0
             },
             "x": {"field": "label", "type": "ordinal", "axis": {"title": ""}},
-            "y": {"field": "$yValue", "type": "quantitative"},
+            "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"},
             "color": {
               "field": "label",
               "type": "nominal",
@@ -145,7 +146,12 @@ case object VegaRenderer {
           s"""
           "width": 300,
           "encoding": {
-              "x": {"field": "$xValue", "type": "ordinal"},
+              "x": {
+                "field": "$xValue",
+                "type": "ordinal",
+                "axis": {"format": ".2f", "titlePadding": 30},
+                "title": "$xLabel"
+              },
               "color": {
                 "field": "label",
                 "type": "nominal",
@@ -156,13 +162,19 @@ case object VegaRenderer {
             {
               "mark": "errorbar",
               "encoding": {
-                "y": {"field": "$yValue", "type": "quantitative"}
+                "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"}
               }
             },
             {
               "mark": "${plotType.toString.toLowerCase}",
               "encoding": {
-                "y": {"field": "$yValue", "aggregate": "mean", "type": "quantitative"}
+                "y": {
+                  "field": "$yValue",
+                  "aggregate": "mean",
+                  "type": "quantitative",
+                  "axis": {"format": ".2f", "titlePadding": 30},
+                  "title": "$yLabel"
+                }
               }
             }
           ]
@@ -331,6 +343,7 @@ case object VegaRenderer {
 import Math._
 import VegaRenderer._
 
+
 case class Person(name: String) {
   def like(other: Person): Relation = Relation(this, other, true)
   def dislike(other: Person): Relation = Relation(this, other, false)
@@ -385,5 +398,57 @@ object Helpers {
 
 import Math._
 import Helpers._
+
+def si4(P: Set[Person],
+        L: Set[Person],
+        D: Set[Person],
+        like: (Person, Person) => Boolean,
+        k: Int): Set[Person] = {
+  requirement(L subsetOf P, "L must be a subset of P")
+  requirement(D subsetOf P, "D must be a subset of P")
+  requirement((L intersect D).isEmpty, "intersection between L and D must be emtpy")
+  requirement((L union D) == P, "union of L and D must equal P")
+
+  P.subsets.toSet // G \subseteq P
+   .filter(G => (G intersect D).size <= k) // such that |G \cap D| <= k
+   .argMax(G => G.size + G.uniquepairs.build(Function.tupled(like)).size)
+   .get
+}
+
+def si5(P: Set[Person],
+        L: Set[Person],
+        D: Set[Person],
+        like: (Person, Person) => Boolean): Set[Person] = {
+  requirement(L subsetOf P, "l must be a subset of p")
+  requirement(D subsetOf P, "d must be a subset of p")
+  requirement((L intersect D).isEmpty, "intersection between l and d must be emtpy")
+  requirement((L union D) == P, "union of l and d must equal p")
+
+
+  P.subsets.toSet // G \subseteq P
+   .argMax(G => {
+     (G intersect L).size // |G \cap L|
+     + G.size // |G|
+     + G.uniquepairs.build(pair => like(pair._1, pair._2)).size // |X|
+   })
+   .get
+}
+
+def si6(P: Set[Person],
+        L: Set[Person],
+        D: Set[Person],
+        like: (Person, Person) => Boolean,
+        k: Int): Set[Person] = {
+    requirement(L subsetOf P, "l must be a subset of p")
+    requirement(D subsetOf P, "d must be a subset of p")
+    requirement((L intersect D).isEmpty, "intersection between l and d must be emtpy")
+    requirement((L union D) == P, "union of l and d must equal p")
+
+
+  P.subsets.toSet // G \subseteq P
+   .filter(G => G.uniquepairs.build(pair => !like(pair._1, pair._2)).size <= k)
+   .argMax(G => (G intersect L).size + G.size)
+   .get
+}
 
 ////

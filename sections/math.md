@@ -3,7 +3,7 @@ layout: index
 title: Math concepts and notation
 permalink: /chapter2/
 sidebar_link: true
-sidebar_sort_order: 5
+sidebar_sort_order: 2
 ---
 
 <div id="toc-wrapper" markdown="1">

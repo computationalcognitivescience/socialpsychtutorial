@@ -11,7 +11,7 @@
 
   <title>
     
-      Simulations for Dialogue 1 - Comparing model behavior &middot; Supplementary material
+      Dialogue 1 - Comparing models &middot; Supplementary material
     
   </title>
 
@@ -71,7 +71,7 @@
   
     
       <a class="page-link "
-          href="/">About</a>
+          href="/">Welcome</a>
     
   
 
@@ -84,23 +84,19 @@
 
   
     
-      <a class="page-link "
-          href="/programming/">Programming in Scala</a>
-    
   
 
   
     
       <a class="page-link "
-          href="/dialogue1/">Simulations for Dialogue 1</a>
+          href="/dialogue1/">Dialogue 1 - Individual models</a>
     
   
 
   
     
-  
-
-  
+      <a class="page-link  active"
+          href="/dialogue1_comparison/">Dialogue 1 - Comparing models</a>
     
   
 
@@ -112,10 +108,6 @@
 
   
 
-  
-
-  
-    
   
 
   
@@ -181,7 +173,7 @@
 
   <div id="toc-wrapper">
 <ul id="markdown-toc">
-  <li><a href="#comparing-model-behaviour-by-hand" id="markdown-toc-comparing-model-behaviour-by-hand">Comparing model behaviour by hand</a></li>
+  <li><a href="#comparing-model-behavior-by-hand" id="markdown-toc-comparing-model-behavior-by-hand">Comparing model behavior by hand</a></li>
   <li><a href="#comparing-model-behaviour-large-scale" id="markdown-toc-comparing-model-behaviour-large-scale">Comparing model behaviour large scale</a></li>
 </ul>
 
@@ -190,7 +182,7 @@
 <p>We take two approaches to analyze differences in model behavior. First, we
 explore model behavior by hand. Second, we explore it by large scale simulation.</p>
 
-<h1 id="comparing-model-behaviour-by-hand">Comparing model behaviour by hand</h1>
+<h1 id="comparing-model-behavior-by-hand">Comparing model behavior by hand</h1>
 <p>If you were already comparing the three models on the previous page, you
 may have noticed differences in behavior. If not, you can use the following
 code box to try different groups and see what selection of invitees each
@@ -232,12 +224,13 @@ model makes.</p>
 
 <p>In the simulation experiment below, we randomly create groups of people and
 their relationships to each other and the host. We can do this <code class="highlighter-rouge">sampleSize</code>
-times. For each group of friends generated, we ask three agents (corresponding
-to the three models SI4, SI5 and SI6) to select invitees, resulting in three
-(possibly different) outputs.</p>
+times. For each group of friends generated, we ask three agents (hosts
+corresponding to the three models SI4, SI5 and SI6) to select invitees,
+resulting in three (possibly different) outputs.</p>
 
-<p>We then perform some data analysis computing a property of the input graph <script type="math/tex">P</script>,
-viz. the ratio of likes and dislikes; and computing two example dependent variables:</p>
+<p>We then perform some data analysis by computing a property of the input,
+viz. the ratio of likes and dislikes; and by computing two example dependent
+variables:</p>
 
 <ol>
   <li>The average number of pairs that like each other amongst invitees; and</li>
@@ -318,20 +311,6 @@ the variation in the data.</p>
 </code></pre></div></div>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Previous</th>
-      <th style="text-align: right">Next</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><a href="/dialogue1">Simulations for Dialogue 1</a></td>
-      <td style="text-align: right"><a href="/dialogue1_conclusions">Conclusions</a></td>
-    </tr>
-  </tbody>
-</table>
 
 
   

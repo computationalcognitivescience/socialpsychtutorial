@@ -30,7 +30,7 @@ This site is released under a [CC-BY 4.0 license](https://creativecommons.org/li
 This site is created with [Jekyll](https://jekyllrb.com) using the [Jekyll-Hydeout](https://github.com/fongandrew/hydeout) theme released under an [MIT license](https://github.com/fongandrew/hydeout/blob/master/LICENSE.md). The source code is available on Github [here](https://github.com/computationalcognitivescience/socialpsychtutorial/).
 
 # Main paper
-van Rooij, I. & Blokpoel, M. (2020). Formalising verbal theories: A tutorial by dialogue. [Prepint]()
+van Rooij, I. & Blokpoel, M. (2020). Formalising verbal theories: A tutorial by dialogue. [Preprint]()
 
 
 # About the authors

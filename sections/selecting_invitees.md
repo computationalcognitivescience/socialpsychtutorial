@@ -11,7 +11,14 @@ sidebar_sort_order: 4
 {:toc}
 </div>
 
-XXX
+On this page you can find three implementations of variants 4, 5 and 6 of
+<span style="font-variant: small-caps;">Selecting invitees</span>. Included
+are the formalizations themselves and the code to run a simulation for them.
+You need to press the run button to run the simulation. This then also allows
+you to change the input of the simulation to explore the behavior of the
+models. You are encouraged to explore the simulations to your heart's content.
+Afterwards, you can [compare the models through analysis here](/socialpsychtutorial/dialogue1_comparison).
+
 
 # Selecting Invitees V4
 
@@ -20,8 +27,6 @@ XXX
 *Input:* A set $$P$$, subsets $$L \subseteq P$$ and $$D \subseteq P$$ with $$L \cap D = \emptyset$$ and $$L \cup D = P$$, a function $$like: P \times P \rightarrow \{true, false\}$$, and a threshold value $$k$$.
 
 <span>*Output:* $$G \subseteq P$$ such that $$|G\cap D| \leq k$$ and $$|X| + |G|$$ is maximized (where $$X = \{p_i,p_j \in G~|~like(p_i,p_j) = true \wedge i\neq j\}$$).</span>
-
-Press the run button to run the simulation.
 
 {% scalafiddle template="Persons", layout="v40" %}
 ```scala

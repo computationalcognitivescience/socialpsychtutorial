@@ -11,7 +11,7 @@ sidebar_sort_order: 2
 {:toc}
 </div>
 
-Like sculpting, theoretical modeling requires its own set of dedicated tools. The theoretical modeler's tools are mathematical concepts, formal expressions, and notational conventions. One can already get quite far with the basics in _set theory_, _functions_ and _logic_. Below we present a brief primer. Readers who have taken introductory classes on these topics can skip this section without loss of continuity.
+For your convenience we have added the math concepts and notations here too.
 
 # Set theory
 A set is a collection of distinct objects. For example, a set of people $$P=\{\text{Ramiro},\text{Brenda},\text{Molly}\}$$, animals $$A=\{\text{cat},\text{turtle},\text{blue whale}, \text{cuttlefish}\}$$ or numbers N=\{1,5,7,12\}. Sets are usually denoted by a capital letter and their elements listed between curly brackets. They can also be visualized as circles.

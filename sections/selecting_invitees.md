@@ -11,6 +11,8 @@ sidebar_sort_order: 4
 {:toc}
 </div>
 
+XXX
+
 # Selecting Invitees V4
 
 <span style="font-variant: small-caps;">Selecting invitees (version 4)</span>
@@ -18,6 +20,8 @@ sidebar_sort_order: 4
 *Input:* A set $$P$$, subsets $$L \subseteq P$$ and $$D \subseteq P$$ with $$L \cap D = \emptyset$$ and $$L \cup D = P$$, a function $$like: P \times P \rightarrow \{true, false\}$$, and a threshold value $$k$$.
 
 <span>*Output:* $$G \subseteq P$$ such that $$|G\cap D| \leq k$$ and $$|X| + |G|$$ is maximized (where $$X = \{p_i,p_j \in G~|~like(p_i,p_j) = true \wedge i\neq j\}$$).</span>
+
+Press the run button to run the simulation.
 
 {% scalafiddle template="Persons", layout="v40" %}
 ```scala

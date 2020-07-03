@@ -28,7 +28,7 @@ Afterwards, you can [compare the models through analysis here](/socialpsychtutor
 
 <span>*Output:* $$G \subseteq P$$ such that $$|G\cap D| \leq k$$ and $$|X| + |G|$$ is maximized (where $$X = \{p_i,p_j \in G~|~like(p_i,p_j) = true \wedge i\neq j\}$$).</span>
 
-{% scalafiddle template="Persons", layout="v40" %}
+{% scalafiddle template="Persons", minheight="1000", layout="v45" %}
 ```scala
 def si4(P: Set[Person],
         L: Set[Person],
@@ -81,7 +81,7 @@ println(out)
 <span>*Output:* $$G \subseteq P$$ such that $$|G\cap L| + |X| + |G|$$ is maximized (where $$X = \{p_i,p_j \in G\}~|~like(p_i,p_j) = true  \wedge i\neq \}$$).</span>
 
 
-{% scalafiddle template="Persons", layout="v40" %}
+{% scalafiddle template="Persons", minheight="1000", layout="v45" %}
 ```scala
 def si5(P: Set[Person],
         L: Set[Person],
@@ -135,7 +135,7 @@ println(out)
 
 <span>*Output:* $$G \subseteq P$$ such that $$|Y| \leq k$$ and  $$|G\cap L|+|G|$$ is maximized (where $$Y = \{p_i,p_j \in G\}~|~like(p_i,p_j) = false \wedge i\neq j \}$$).</span>
 
-{% scalafiddle template="Persons", layout="v40" %}
+{% scalafiddle template="Persons", minheight="1000", layout="v45" %}
 ```scala
 def si6(P: Set[Person],
         L: Set[Person],

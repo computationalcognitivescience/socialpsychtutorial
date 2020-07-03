@@ -78,6 +78,8 @@ until the end of the universe.*
 ```scala
 val groupSize = 5
 val sampleSize = 50
+val k4 = 1
+val k6 = 2
 
 val P = List.tabulate(groupSize)(_ => Person.random).toSet
 
@@ -91,9 +93,9 @@ val results = for(trialNr <- 0 until sampleSize) yield {
     .map(pair => if(Random.nextBoolean) pair._1 like pair._2 else pair._1 dislike pair._2)
 
   // Three agents select invitees
-  val outputSI4 = si4(P, L, D, relations.deriveFun, 1)
+  val outputSI4 = si4(P, L, D, relations.deriveFun, k4)
   val outputSI5 = si5(P, L, D, relations.deriveFun)
-  val outputSI6 = si6(P, L, D, relations.deriveFun, 2)
+  val outputSI6 = si6(P, L, D, relations.deriveFun, k6)
 
   // Compute independent variables
   val nrLikes = relations.count(_.liking)

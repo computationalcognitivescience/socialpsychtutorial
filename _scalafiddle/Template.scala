@@ -79,7 +79,8 @@ case object VegaRenderer {
     yValue: String,
     yLabel: String,
     title: String,
-    plotType: PlotType = PlotType.Line): Unit =
+    plotType: PlotType = PlotType.Line,
+    bin: Boolean = false): Unit =
       render(
         genSpec(
           traces,
@@ -88,7 +89,8 @@ case object VegaRenderer {
           yValue,
           yLabel,
           title,
-          plotType
+          plotType,
+          bin
         )
       )
 
@@ -98,7 +100,8 @@ case object VegaRenderer {
     yValue: String,
     yLabel: String,
     title: String,
-    plotType: PlotType = PlotType.Line): String = {
+    plotType: PlotType = PlotType.Line,
+    bin: Boolean = false): String = {
       s"""
       "$$schema": "https://vega.github.io/schema/vega-lite/v4.json",
       "height": 340,
@@ -116,7 +119,7 @@ case object VegaRenderer {
           "width": 300,
           "mark": "bar",
           "encoding": {
-            "x": {"field": "$xValue", "type": "ordinal", "title": "$xLabel"},
+            "x": {"field": "$xValue", "type": "ordinal", "title": "$xLabel", "bin": ${if(bin) "true" else "false"}},
             "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"},
             "color": {
               "field": "label",
@@ -127,13 +130,13 @@ case object VegaRenderer {
           """
         } else if(plotType==PlotType.Bar && traces.length>1) {
           s"""
-          "width": 10,
+          "width": 40,
           "mark": "bar",
           "encoding": {
             "column": {
-              "field": "$xValue", "type": "nominal", "spacing": 0
+              "field": "$xValue", "title": "$xLabel", "type": "nominal", "spacing": 10, "bin": ${if(bin) "true" else "false"}
             },
-            "x": {"field": "label", "type": "ordinal", "axis": {"title": ""}},
+            "x": {"field": "label", "type": "ordinal", "axis": {"title": "label", "grid": false}},
             "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"},
             "color": {
               "field": "label",

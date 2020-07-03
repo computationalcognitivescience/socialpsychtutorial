@@ -11,7 +11,7 @@
 
   <title>
     
-      Dialogue 1 - Comparing models &middot; Supplementary material
+      Dialogue 4 - Comparing models &middot; Supplementary material
     
   </title>
 
@@ -95,7 +95,7 @@
 
   
     
-      <a class="page-link  active"
+      <a class="page-link "
           href="/socialpsychtutorial/dialogue1_comparison/">Dialogue 1 - Comparing models</a>
     
   
@@ -109,7 +109,7 @@
 
   
     
-      <a class="page-link "
+      <a class="page-link  active"
           href="/socialpsychtutorial/dialogue4_comparison/">Dialogue 4 - Comparing models</a>
     
   
@@ -205,133 +205,138 @@
 explore model behavior by hand. Second, we explore it by large scale simulation.</p>
 
 <h1 id="comparing-model-behavior-by-hand">Comparing model behavior by hand</h1>
-<p>If you were already comparing the three models on the previous page, you
+<p>If you were already comparing the two models on the previous page, you
 may have noticed differences in behavior. If not, you can use the following
 code box to try different groups and see what selection of invitees each
 model makes.</p>
 
 <div data-scalafiddle="" data-template="PersonsWithFormalisations" data-minheight="1000" data-layout="v40">
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">val</span> <span class="o">(</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">,</span> <span class="n">p3</span><span class="o">,</span> <span class="n">p4</span><span class="o">,</span> <span class="n">p5</span><span class="o">)</span> <span class="k">=</span> <span class="o">(</span><span class="nc">Person</span><span class="o">(</span><span class="s">"p1"</span><span class="o">),</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"p2"</span><span class="o">),</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"p3"</span><span class="o">),</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"p4"</span><span class="o">),</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"p5"</span><span class="o">))</span>
-
-<span class="k">val</span> <span class="nv">P</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">,</span> <span class="n">p3</span><span class="o">,</span> <span class="n">p4</span><span class="o">,</span> <span class="n">p5</span><span class="o">)</span>
-<span class="k">val</span> <span class="nv">L</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="n">p1</span><span class="o">,</span> <span class="n">p2</span><span class="o">,</span> <span class="n">p3</span><span class="o">)</span>
-<span class="k">val</span> <span class="nv">D</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="n">p4</span><span class="o">,</span> <span class="n">p5</span><span class="o">)</span>
-<span class="k">val</span> <span class="nv">relations</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span>
-  <span class="n">p1</span> <span class="n">like</span> <span class="n">p2</span><span class="o">,</span>
-  <span class="n">p1</span> <span class="n">like</span> <span class="n">p3</span><span class="o">,</span>
-  <span class="n">p2</span> <span class="n">like</span> <span class="n">p3</span><span class="o">,</span>
-  <span class="n">p3</span> <span class="n">like</span> <span class="n">p4</span><span class="o">,</span>
-  <span class="n">p1</span> <span class="n">like</span> <span class="n">p5</span><span class="o">,</span>
-  <span class="n">p2</span> <span class="n">like</span> <span class="n">p5</span>
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">a</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"A"</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">b</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"B"</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">c</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"C"</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">d</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"D"</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">e</span> <span class="k">=</span> <span class="nc">Person</span><span class="o">(</span><span class="s">"E"</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">G</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">d</span><span class="o">,</span> <span class="n">e</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">similarities</span> <span class="k">=</span> <span class="nc">Set</span><span class="o">(</span>
+  <span class="nc">Similarity</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">b</span><span class="o">,</span> <span class="mf">1.0</span><span class="o">),</span>
+  <span class="nc">Similarity</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="mf">2.0</span><span class="o">),</span>
+  <span class="nc">Similarity</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">d</span><span class="o">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="o">),</span>
+  <span class="nc">Similarity</span><span class="o">(</span><span class="n">a</span><span class="o">,</span> <span class="n">e</span><span class="o">,</span> <span class="mf">3.5</span><span class="o">),</span>
+  <span class="nc">Similarity</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="o">-</span><span class="mf">2.0</span><span class="o">),</span>
+  <span class="nc">Similarity</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">d</span><span class="o">,</span> <span class="mf">4.0</span><span class="o">),</span>
+  <span class="nc">Similarity</span><span class="o">(</span><span class="n">c</span><span class="o">,</span> <span class="n">d</span><span class="o">,</span> <span class="o">-</span><span class="mf">3.0</span><span class="o">)</span>
 <span class="o">)</span>
-<span class="k">def</span> <span class="nf">like</span> <span class="k">=</span> <span class="nv">relations</span><span class="o">.</span><span class="py">deriveFun</span>
-<span class="k">val</span> <span class="nv">k</span> <span class="k">=</span> <span class="mi">3</span>
+<span class="k">def</span> <span class="nf">sim</span> <span class="k">=</span> <span class="nv">similarities</span><span class="o">.</span><span class="py">deriveFun</span>
+<span class="k">val</span> <span class="nv">s</span> <span class="k">=</span> <span class="mf">0.2</span>
 
-<span class="k">val</span> <span class="nv">out4</span> <span class="k">=</span> <span class="nf">si4</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="n">like</span><span class="o">,</span> <span class="n">k</span><span class="o">)</span>
-<span class="k">val</span> <span class="nv">out5</span> <span class="k">=</span> <span class="nf">si5</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="n">like</span><span class="o">)</span>
-<span class="k">val</span> <span class="nv">out6</span> <span class="k">=</span> <span class="nf">si6</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="n">like</span><span class="o">,</span> <span class="n">k</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">out1</span> <span class="k">=</span> <span class="nf">ps1</span><span class="o">(</span><span class="n">G</span><span class="o">,</span> <span class="n">sim</span><span class="o">)</span>
+<span class="k">val</span> <span class="nv">out2</span> <span class="k">=</span> <span class="nf">ps2</span><span class="o">(</span><span class="n">G</span><span class="o">,</span> <span class="n">sim</span><span class="o">,</span> <span class="n">s</span><span class="o">)</span>
 
 <span class="nf">println</span><span class="o">(</span><span class="nf">h2</span><span class="o">(</span><span class="s">"Input:"</span><span class="o">))</span>
-<span class="nv">VegaRenderer</span><span class="o">.</span><span class="py">render</span><span class="o">(</span><span class="nv">relations</span><span class="o">.</span><span class="py">deriveGraph</span><span class="o">(</span><span class="n">P</span><span class="o">))</span>
-<span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"k=$k (when applicable)"</span><span class="o">)</span>
+<span class="nv">VegaRenderer</span><span class="o">.</span><span class="py">render</span><span class="o">(</span><span class="nv">similarities</span><span class="o">.</span><span class="py">deriveGraph</span><span class="o">(</span><span class="n">G</span><span class="o">))</span>
+<span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"s=$s"</span><span class="o">)</span>
 
 <span class="nf">println</span><span class="o">(</span><span class="nf">h2</span><span class="o">(</span><span class="s">"Output:"</span><span class="o">))</span>
-<span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"SI4 selects: $out4"</span><span class="o">)</span>
-<span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"SI5 selects: $out5"</span><span class="o">)</span>
-<span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"SI6 selects: $out6"</span><span class="o">)</span>
+<span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"PS1 forms: $out1"</span><span class="o">)</span>
+<span class="nf">println</span><span class="o">(</span><span class="n">s</span><span class="s">"PS2 forms: $out2"</span><span class="o">)</span>
 </code></pre></div></div>
 </div>
 
 <h1 id="comparing-model-behaviour-large-scale">Comparing model behaviour large scale</h1>
 
 <p>In the simulation experiment below, we randomly create groups of people and
-their relationships to each other and the host. We can do this <code class="highlighter-rouge">sampleSize</code>
-times. For each group of friends generated, we ask three agents (hosts
-corresponding to the three models SI4, SI5 and SI6) to select invitees,
-resulting in three (possibly different) outputs.</p>
+their similarity relationships. For each group of friends generated, we
+apply the two party subgrouping models resulting in two (possibly different)
+outputs.</p>
 
 <p>We then perform some data analysis by computing a property of the input,
-viz. the ratio of likes and dislikes; and by computing two example dependent
+viz. the mean similarity between all pairs; and by computing two example dependent
 variables:</p>
 
 <ol>
-  <li>The average number of pairs that like each other amongst invitees;</li>
-  <li>The number of invited guests.</li>
+  <li>The mean ingroup similarity of the formed groups;</li>
+  <li>The number of groups that are formed.</li>
 </ol>
 
-<p>Try to play around with the parameters <code class="highlighter-rouge">groupSize</code> and <code class="highlighter-rouge">sampleSize</code>
-and see what changes. For example, increasing the number of samples, decreases
-the variation in the data. Errorbars report 96% confidence intervals.
-<em>Note: Group size will require exponentially more computation time, don’t try
-large values (<script type="math/tex">>>15</script>) unless you have time until the end of the universe.</em></p>
+<p>Errorbars report 96% confidence intervals. <em>Note: Group size will require exponentially
+more computation time, don’t try large values (<script type="math/tex">>7</script>) unless you have time
+until the end of the universe.</em></p>
 
-<div data-scalafiddle="" data-template="PersonsWithFormalisations" data-minheight="1000" data-layout="v50">
-<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">groupSize</span> <span class="k">=</span> <span class="mi">5</span>
-<span class="k">val</span> <span class="nv">sampleSize</span> <span class="k">=</span> <span class="mi">50</span>
-<span class="k">val</span> <span class="nv">k4</span> <span class="k">=</span> <span class="mi">1</span>
-<span class="k">val</span> <span class="nv">k6</span> <span class="k">=</span> <span class="mi">2</span>
+<div data-scalafiddle="" data-template="PersonsWithFormalisations">
+<div class="language-scala highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">val</span> <span class="nv">groupSize</span> <span class="k">=</span> <span class="mi">6</span>
+<span class="k">val</span> <span class="nv">sampleSize</span> <span class="k">=</span> <span class="mi">100</span>
+<span class="k">val</span> <span class="nv">k</span> <span class="k">=</span> <span class="mf">0.6</span>
+<span class="k">val</span> <span class="nv">minSimilarity</span> <span class="k">=</span> <span class="o">-</span><span class="mi">4</span>
+<span class="k">val</span> <span class="nv">maxSimilarity</span> <span class="k">=</span> <span class="mi">4</span>
 
 <span class="k">val</span> <span class="nv">P</span> <span class="k">=</span> <span class="nv">List</span><span class="o">.</span><span class="py">tabulate</span><span class="o">(</span><span class="n">groupSize</span><span class="o">)(</span><span class="k">_</span> <span class="k">=&gt;</span> <span class="nv">Person</span><span class="o">.</span><span class="py">random</span><span class="o">).</span><span class="py">toSet</span>
 
 <span class="k">val</span> <span class="nv">results</span> <span class="k">=</span> <span class="nf">for</span><span class="o">(</span><span class="n">trialNr</span> <span class="k">&lt;-</span> <span class="mi">0</span> <span class="n">until</span> <span class="n">sampleSize</span><span class="o">)</span> <span class="k">yield</span> <span class="o">{</span>
-  <span class="c1">// Generate random relationships with the host</span>
-  <span class="k">val</span> <span class="nv">ld</span> <span class="k">=</span> <span class="nv">P</span><span class="o">.</span><span class="py">toList</span><span class="o">.</span><span class="py">splitAt</span><span class="o">(</span><span class="nv">Random</span><span class="o">.</span><span class="py">nextInt</span><span class="o">(</span><span class="nv">P</span><span class="o">.</span><span class="py">size</span><span class="o">))</span>
-  <span class="k">val</span> <span class="nv">L</span> <span class="k">=</span> <span class="nv">ld</span><span class="o">.</span><span class="py">_1</span><span class="o">.</span><span class="py">toSet</span>
-  <span class="k">val</span> <span class="nv">D</span> <span class="k">=</span> <span class="nv">ld</span><span class="o">.</span><span class="py">_2</span><span class="o">.</span><span class="py">toSet</span>
-  <span class="c1">// Generate random relations between pairs of people</span>
-  <span class="k">val</span> <span class="nv">relations</span> <span class="k">=</span> <span class="nv">P</span><span class="o">.</span><span class="py">uniquepairs</span>
-    <span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="n">pair</span> <span class="k">=&gt;</span> <span class="nf">if</span><span class="o">(</span><span class="nv">Random</span><span class="o">.</span><span class="py">nextBoolean</span><span class="o">)</span> <span class="nv">pair</span><span class="o">.</span><span class="py">_1</span> <span class="n">like</span> <span class="nv">pair</span><span class="o">.</span><span class="py">_2</span> <span class="k">else</span> <span class="nv">pair</span><span class="o">.</span><span class="py">_1</span> <span class="n">dislike</span> <span class="nv">pair</span><span class="o">.</span><span class="py">_2</span><span class="o">)</span>
+  <span class="c1">// Generate random similarities between pairs of people</span>
+  <span class="k">val</span> <span class="nv">similarities</span> <span class="k">=</span> <span class="nv">P</span><span class="o">.</span><span class="py">uniquepairs</span>
+    <span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="n">pair</span> <span class="k">=&gt;</span> <span class="nc">Similarity</span><span class="o">(</span>
+      <span class="nv">pair</span><span class="o">.</span><span class="py">_1</span><span class="o">,</span>
+      <span class="nv">pair</span><span class="o">.</span><span class="py">_2</span><span class="o">,</span>
+      <span class="nv">Random</span><span class="o">.</span><span class="py">nextDouble</span><span class="o">()</span> <span class="o">*</span> <span class="o">(</span><span class="nv">math</span><span class="o">.</span><span class="py">abs</span><span class="o">(</span><span class="n">minSimilarity</span><span class="o">)</span> <span class="o">+</span> <span class="n">maxSimilarity</span><span class="o">)</span> <span class="o">+</span> <span class="n">minSimilarity</span>
+    <span class="o">))</span>
+  <span class="k">val</span> <span class="nv">sim</span> <span class="k">=</span> <span class="nv">similarities</span><span class="o">.</span><span class="py">deriveFun</span>
 
   <span class="c1">// Three agents select invitees</span>
-  <span class="k">val</span> <span class="nv">outputSI4</span> <span class="k">=</span> <span class="nf">si4</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="nv">relations</span><span class="o">.</span><span class="py">deriveFun</span><span class="o">,</span> <span class="n">k4</span><span class="o">)</span>
-  <span class="k">val</span> <span class="nv">outputSI5</span> <span class="k">=</span> <span class="nf">si5</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="nv">relations</span><span class="o">.</span><span class="py">deriveFun</span><span class="o">)</span>
-  <span class="k">val</span> <span class="nv">outputSI6</span> <span class="k">=</span> <span class="nf">si6</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">L</span><span class="o">,</span> <span class="n">D</span><span class="o">,</span> <span class="nv">relations</span><span class="o">.</span><span class="py">deriveFun</span><span class="o">,</span> <span class="n">k6</span><span class="o">)</span>
+  <span class="k">val</span> <span class="nv">outputPS1</span> <span class="k">=</span> <span class="nf">ps1</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">sim</span><span class="o">)</span>
+  <span class="k">val</span> <span class="nv">outputPS2</span> <span class="k">=</span> <span class="nf">ps2</span><span class="o">(</span><span class="n">P</span><span class="o">,</span> <span class="n">sim</span><span class="o">,</span> <span class="n">k</span><span class="o">)</span>
 
   <span class="c1">// Compute independent variables</span>
-  <span class="k">val</span> <span class="nv">nrLikes</span> <span class="k">=</span> <span class="nv">relations</span><span class="o">.</span><span class="py">count</span><span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">liking</span><span class="o">)</span>
-  <span class="k">val</span> <span class="nv">nrDislikes</span> <span class="k">=</span> <span class="nv">relations</span><span class="o">.</span><span class="py">count</span><span class="o">(!</span><span class="nv">_</span><span class="o">.</span><span class="py">liking</span><span class="o">)</span>
-  <span class="k">val</span> <span class="nv">ldRatio</span> <span class="k">=</span> <span class="nv">nrLikes</span><span class="o">.</span><span class="py">toDouble</span> <span class="o">/</span> <span class="n">nrDislikes</span>
+  <span class="k">val</span> <span class="nv">meanSimilarity</span> <span class="k">=</span> <span class="nv">similarities</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">degree</span><span class="o">).</span><span class="py">sum</span> <span class="o">/</span> <span class="nv">P</span><span class="o">.</span><span class="py">size</span>
 
   <span class="c1">// Compute dependend variables</span>
-  <span class="k">val</span> <span class="nv">partySize4</span> <span class="k">=</span> <span class="nv">outputSI4</span><span class="o">.</span><span class="py">size</span>
-  <span class="k">val</span> <span class="nv">partySize5</span> <span class="k">=</span> <span class="nv">outputSI5</span><span class="o">.</span><span class="py">size</span>
-  <span class="k">val</span> <span class="nv">partySize6</span> <span class="k">=</span> <span class="nv">outputSI6</span><span class="o">.</span><span class="py">size</span>
+  <span class="k">val</span> <span class="nv">meanInGroupSimilarity1</span><span class="k">:</span> <span class="kt">Any</span> <span class="o">=</span> <span class="nf">if</span><span class="o">(</span><span class="nv">outputPS1</span><span class="o">.</span><span class="py">isDefined</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="nv">partitioning</span> <span class="k">=</span> <span class="nv">outputPS1</span><span class="o">.</span><span class="py">get</span>
+    <span class="nv">partitioning</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="n">part</span> <span class="k">=&gt;</span> <span class="nv">part</span><span class="o">.</span><span class="py">uniquepairs</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="nv">Function</span><span class="o">.</span><span class="py">tupled</span><span class="o">(</span><span class="n">sim</span><span class="o">)).</span><span class="py">sum</span> <span class="o">/</span> <span class="nv">part</span><span class="o">.</span><span class="py">size</span><span class="o">).</span><span class="py">sum</span> <span class="o">/</span> <span class="nv">partitioning</span><span class="o">.</span><span class="py">size</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="s">"NA"</span>
+  <span class="o">}</span>
+  <span class="k">val</span> <span class="nv">meanInGroupSimilarity2</span><span class="k">:</span> <span class="kt">Any</span> <span class="o">=</span> <span class="nf">if</span><span class="o">(</span><span class="nv">outputPS2</span><span class="o">.</span><span class="py">isDefined</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">val</span> <span class="nv">partitioning</span> <span class="k">=</span> <span class="nv">outputPS2</span><span class="o">.</span><span class="py">get</span>
+    <span class="nv">partitioning</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="n">part</span> <span class="k">=&gt;</span> <span class="nv">part</span><span class="o">.</span><span class="py">uniquepairs</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="nv">Function</span><span class="o">.</span><span class="py">tupled</span><span class="o">(</span><span class="n">sim</span><span class="o">)).</span><span class="py">sum</span> <span class="o">/</span> <span class="nv">part</span><span class="o">.</span><span class="py">size</span><span class="o">).</span><span class="py">sum</span> <span class="o">/</span> <span class="nv">partitioning</span><span class="o">.</span><span class="py">size</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="s">"NA"</span>
+  <span class="o">}</span>
+  <span class="k">val</span> <span class="nv">nrGroups1</span> <span class="k">=</span> <span class="nf">if</span><span class="o">(</span><span class="nv">outputPS1</span><span class="o">.</span><span class="py">isDefined</span><span class="o">)</span> <span class="nv">outputPS1</span><span class="o">.</span><span class="py">get</span><span class="o">.</span><span class="py">size</span> <span class="k">else</span> <span class="s">"NA"</span>
+  <span class="k">val</span> <span class="nv">nrGroups2</span> <span class="k">=</span> <span class="nf">if</span><span class="o">(</span><span class="nv">outputPS2</span><span class="o">.</span><span class="py">isDefined</span><span class="o">)</span> <span class="nv">outputPS2</span><span class="o">.</span><span class="py">get</span><span class="o">.</span><span class="py">size</span> <span class="k">else</span> <span class="s">"NA"</span>
 
-  <span class="k">val</span> <span class="nv">like4</span> <span class="k">=</span> <span class="nf">for</span><span class="o">(</span><span class="n">g1</span> <span class="k">&lt;-</span> <span class="nv">outputSI4</span><span class="o">.</span><span class="py">toList</span><span class="o">)</span> <span class="nf">yield</span>
-      <span class="o">(</span><span class="nf">for</span><span class="o">(</span><span class="n">g2</span> <span class="k">&lt;-</span> <span class="nv">outputSI4</span><span class="o">.</span><span class="py">toList</span> <span class="nf">if</span><span class="o">(</span><span class="n">g1</span><span class="o">!=</span><span class="n">g2</span><span class="o">))</span> <span class="k">yield</span> <span class="nv">relations</span><span class="o">.</span><span class="py">contains</span><span class="o">(</span><span class="n">g1</span> <span class="n">like</span> <span class="n">g2</span><span class="o">)).</span><span class="py">count</span><span class="o">(</span><span class="k">_</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span>  
-  <span class="k">val</span> <span class="nv">like5</span> <span class="k">=</span> <span class="nf">for</span><span class="o">(</span><span class="n">g1</span> <span class="k">&lt;-</span> <span class="nv">outputSI5</span><span class="o">.</span><span class="py">toList</span><span class="o">)</span> <span class="nf">yield</span>
-      <span class="o">(</span><span class="nf">for</span><span class="o">(</span><span class="n">g2</span> <span class="k">&lt;-</span> <span class="nv">outputSI5</span><span class="o">.</span><span class="py">toList</span> <span class="nf">if</span><span class="o">(</span><span class="n">g1</span><span class="o">!=</span><span class="n">g2</span><span class="o">))</span> <span class="k">yield</span> <span class="nv">relations</span><span class="o">.</span><span class="py">contains</span><span class="o">(</span><span class="n">g1</span> <span class="n">like</span> <span class="n">g2</span><span class="o">)).</span><span class="py">count</span><span class="o">(</span><span class="k">_</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span>
-  <span class="k">val</span> <span class="nv">like6</span> <span class="k">=</span> <span class="nf">for</span><span class="o">(</span><span class="n">g1</span> <span class="k">&lt;-</span> <span class="nv">outputSI6</span><span class="o">.</span><span class="py">toList</span><span class="o">)</span> <span class="nf">yield</span>
-      <span class="o">(</span><span class="nf">for</span><span class="o">(</span><span class="n">g2</span> <span class="k">&lt;-</span> <span class="nv">outputSI6</span><span class="o">.</span><span class="py">toList</span> <span class="nf">if</span><span class="o">(</span><span class="n">g1</span><span class="o">!=</span><span class="n">g2</span><span class="o">))</span> <span class="k">yield</span> <span class="nv">relations</span><span class="o">.</span><span class="py">contains</span><span class="o">(</span><span class="n">g1</span> <span class="n">like</span> <span class="n">g2</span><span class="o">)).</span><span class="py">count</span><span class="o">(</span><span class="k">_</span> <span class="o">==</span> <span class="kc">true</span><span class="o">)</span>
-
-  <span class="k">val</span> <span class="nv">avgLike4</span> <span class="k">=</span> <span class="nv">like4</span><span class="o">.</span><span class="py">sum</span><span class="o">.</span><span class="py">toDouble</span> <span class="o">/</span> <span class="nv">like4</span><span class="o">.</span><span class="py">length</span>
-  <span class="k">val</span> <span class="nv">avgLike5</span> <span class="k">=</span> <span class="nv">like5</span><span class="o">.</span><span class="py">sum</span><span class="o">.</span><span class="py">toDouble</span> <span class="o">/</span> <span class="nv">like5</span><span class="o">.</span><span class="py">length</span>
-  <span class="k">val</span> <span class="nv">avgLike6</span> <span class="k">=</span> <span class="nv">like6</span><span class="o">.</span><span class="py">sum</span><span class="o">.</span><span class="py">toDouble</span> <span class="o">/</span> <span class="nv">like6</span><span class="o">.</span><span class="py">length</span>
 
   <span class="c1">// Return the dataset for this random graph</span>
-  <span class="o">(</span><span class="nc">Map</span><span class="o">(</span><span class="s">"likes"</span> <span class="o">-&gt;</span> <span class="n">nrLikes</span><span class="o">,</span> <span class="s">"dislikes"</span> <span class="o">-&gt;</span> <span class="n">nrDislikes</span><span class="o">,</span> <span class="s">"ldRatio"</span> <span class="o">-&gt;</span> <span class="n">ldRatio</span><span class="o">,</span> <span class="s">"avgLike"</span> <span class="o">-&gt;</span> <span class="n">avgLike4</span><span class="o">,</span> <span class="s">"partySize"</span> <span class="o">-&gt;</span> <span class="n">partySize4</span><span class="o">),</span>
-  <span class="nc">Map</span><span class="o">(</span><span class="s">"likes"</span> <span class="o">-&gt;</span> <span class="n">nrLikes</span><span class="o">,</span> <span class="s">"dislikes"</span> <span class="o">-&gt;</span> <span class="n">nrDislikes</span><span class="o">,</span> <span class="s">"ldRatio"</span> <span class="o">-&gt;</span> <span class="n">ldRatio</span><span class="o">,</span> <span class="s">"avgLike"</span> <span class="o">-&gt;</span> <span class="n">avgLike5</span><span class="o">,</span> <span class="s">"partySize"</span> <span class="o">-&gt;</span> <span class="n">partySize5</span><span class="o">),</span>
-  <span class="nc">Map</span><span class="o">(</span><span class="s">"likes"</span> <span class="o">-&gt;</span> <span class="n">nrLikes</span><span class="o">,</span> <span class="s">"dislikes"</span> <span class="o">-&gt;</span> <span class="n">nrDislikes</span><span class="o">,</span> <span class="s">"ldRatio"</span> <span class="o">-&gt;</span> <span class="n">ldRatio</span><span class="o">,</span> <span class="s">"avgLike"</span> <span class="o">-&gt;</span> <span class="n">avgLike6</span><span class="o">,</span> <span class="s">"partySize"</span> <span class="o">-&gt;</span> <span class="n">partySize6</span><span class="o">))</span>
+  <span class="o">(</span><span class="nc">Map</span><span class="o">(</span><span class="s">"meanSimilarity"</span> <span class="o">-&gt;</span> <span class="n">meanSimilarity</span><span class="o">,</span> <span class="s">"nrGroups"</span> <span class="o">-&gt;</span> <span class="n">nrGroups1</span><span class="o">,</span> <span class="s">"meanInGroupSimilarity"</span> <span class="o">-&gt;</span> <span class="n">meanInGroupSimilarity1</span><span class="o">),</span>
+  <span class="nc">Map</span><span class="o">(</span><span class="s">"meanSimilarity"</span> <span class="o">-&gt;</span> <span class="n">meanSimilarity</span><span class="o">,</span> <span class="s">"nrGroups"</span> <span class="o">-&gt;</span> <span class="n">nrGroups2</span><span class="o">,</span> <span class="s">"meanInGroupSimilarity"</span> <span class="o">-&gt;</span> <span class="n">meanInGroupSimilarity2</span><span class="o">))</span>
 <span class="o">}</span>
 
-<span class="k">val</span> <span class="nv">si4Data</span> <span class="k">=</span> <span class="nv">results</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">_1</span><span class="o">).</span><span class="py">toList</span>
-<span class="k">val</span> <span class="nv">si5Data</span> <span class="k">=</span> <span class="nv">results</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">_2</span><span class="o">).</span><span class="py">toList</span>
-<span class="k">val</span> <span class="nv">si6Data</span> <span class="k">=</span> <span class="nv">results</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">_3</span><span class="o">).</span><span class="py">toList</span>
+<span class="k">val</span> <span class="nv">ps1Data</span> <span class="k">=</span> <span class="nv">results</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">_1</span><span class="o">).</span><span class="py">toList</span>
+<span class="k">val</span> <span class="nv">ps2Data</span> <span class="k">=</span> <span class="nv">results</span><span class="o">.</span><span class="py">map</span><span class="o">(</span><span class="nv">_</span><span class="o">.</span><span class="py">_2</span><span class="o">).</span><span class="py">toList</span>
 
-<span class="nf">render</span><span class="o">(</span><span class="n">traces</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="nc">Trace</span><span class="o">(</span><span class="s">"SI4"</span><span class="o">,</span> <span class="n">si4Data</span><span class="o">),</span> <span class="nc">Trace</span><span class="o">(</span><span class="s">"SI5"</span><span class="o">,</span> <span class="n">si5Data</span><span class="o">),</span> <span class="nc">Trace</span><span class="o">(</span><span class="s">"SI6"</span><span class="o">,</span> <span class="n">si6Data</span><span class="o">)),</span>
-      <span class="n">xValue</span> <span class="k">=</span> <span class="s">"ldRatio"</span><span class="o">,</span>
-      <span class="n">xLabel</span> <span class="k">=</span> <span class="s">"Likes / dislikes ratio in P"</span><span class="o">,</span>
-      <span class="n">yValue</span> <span class="k">=</span> <span class="s">"avgLike"</span><span class="o">,</span>
-      <span class="n">yLabel</span> <span class="k">=</span> <span class="s">"Average likes amongst invitees"</span><span class="o">,</span>
-      <span class="n">title</span> <span class="k">=</span> <span class="s">"Average likes"</span><span class="o">,</span>
+<span class="nf">render</span><span class="o">(</span><span class="n">traces</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="nc">Trace</span><span class="o">(</span><span class="s">"PS1"</span><span class="o">,</span> <span class="n">ps1Data</span><span class="o">),</span> <span class="nc">Trace</span><span class="o">(</span><span class="s">"PS2"</span><span class="o">,</span> <span class="n">ps2Data</span><span class="o">)),</span>
+      <span class="n">xValue</span> <span class="k">=</span> <span class="s">"meanSimilarity"</span><span class="o">,</span>
+      <span class="n">xLabel</span> <span class="k">=</span> <span class="s">"Mean similarity in whole group"</span><span class="o">,</span>
+      <span class="n">yValue</span> <span class="k">=</span> <span class="s">"meanInGroupSimilarity"</span><span class="o">,</span>
+      <span class="n">yLabel</span> <span class="k">=</span> <span class="s">"Mean ingroup similarity"</span><span class="o">,</span>
+      <span class="n">title</span> <span class="k">=</span> <span class="s">"Mean ingroup similarity"</span><span class="o">,</span>
       <span class="n">plotType</span> <span class="k">=</span> <span class="nv">PlotType</span><span class="o">.</span><span class="py">Point</span><span class="o">)</span>
 
-<span class="nf">render</span><span class="o">(</span><span class="n">traces</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="nc">Trace</span><span class="o">(</span><span class="s">"SI4"</span><span class="o">,</span> <span class="n">si4Data</span><span class="o">),</span> <span class="nc">Trace</span><span class="o">(</span><span class="s">"SI5"</span><span class="o">,</span> <span class="n">si5Data</span><span class="o">),</span> <span class="nc">Trace</span><span class="o">(</span><span class="s">"SI6"</span><span class="o">,</span> <span class="n">si6Data</span><span class="o">)),</span>
-      <span class="n">xValue</span> <span class="k">=</span> <span class="s">"ldRatio"</span><span class="o">,</span>
-      <span class="n">xLabel</span> <span class="k">=</span> <span class="s">"Likes / dislikes ratio in P"</span><span class="o">,</span>
-      <span class="n">yValue</span> <span class="k">=</span> <span class="s">"partySize"</span><span class="o">,</span>
-      <span class="n">yLabel</span> <span class="k">=</span> <span class="s">"Number of invitees"</span><span class="o">,</span>
-      <span class="n">title</span> <span class="k">=</span> <span class="s">"Party size"</span><span class="o">,</span>
+
+<span class="nf">render</span><span class="o">(</span><span class="n">traces</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="nc">Trace</span><span class="o">(</span><span class="s">"PS1"</span><span class="o">,</span> <span class="n">ps1Data</span><span class="o">),</span> <span class="nc">Trace</span><span class="o">(</span><span class="s">"PS2"</span><span class="o">,</span> <span class="n">ps2Data</span><span class="o">)),</span>
+      <span class="n">xValue</span> <span class="k">=</span> <span class="s">"meanSimilarity"</span><span class="o">,</span>
+      <span class="n">xLabel</span> <span class="k">=</span> <span class="s">"Mean similarity in whole group"</span><span class="o">,</span>
+      <span class="n">yValue</span> <span class="k">=</span> <span class="s">"nrGroups"</span><span class="o">,</span>
+      <span class="n">yLabel</span> <span class="k">=</span> <span class="s">"Number of groups"</span><span class="o">,</span>
+      <span class="n">title</span> <span class="k">=</span> <span class="s">"Mean number of groups"</span><span class="o">,</span>
+      <span class="n">plotType</span> <span class="k">=</span> <span class="nv">PlotType</span><span class="o">.</span><span class="py">Point</span><span class="o">,</span>
+      <span class="kc">true</span><span class="o">)</span>
+
+<span class="nf">render</span><span class="o">(</span><span class="n">traces</span> <span class="k">=</span> <span class="nc">List</span><span class="o">(</span><span class="nc">Trace</span><span class="o">(</span><span class="s">"PS1"</span><span class="o">,</span> <span class="n">ps1Data</span><span class="o">),</span> <span class="nc">Trace</span><span class="o">(</span><span class="s">"PS2"</span><span class="o">,</span> <span class="n">ps2Data</span><span class="o">)),</span>
+      <span class="n">xValue</span> <span class="k">=</span> <span class="s">"nrGroups"</span><span class="o">,</span>
+      <span class="n">xLabel</span> <span class="k">=</span> <span class="s">"Number of groups"</span><span class="o">,</span>
+      <span class="n">yValue</span> <span class="k">=</span> <span class="s">"meanInGroupSimilarity"</span><span class="o">,</span>
+      <span class="n">yLabel</span> <span class="k">=</span> <span class="s">"Mean ingroup similarity"</span><span class="o">,</span>
+      <span class="n">title</span> <span class="k">=</span> <span class="s">"Number of groups vs ingroup similarity"</span><span class="o">,</span>
       <span class="n">plotType</span> <span class="k">=</span> <span class="nv">PlotType</span><span class="o">.</span><span class="py">Point</span><span class="o">)</span>
 
 </code></pre></div></div>

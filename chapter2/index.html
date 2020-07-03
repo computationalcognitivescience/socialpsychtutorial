@@ -209,6 +209,7 @@
       <li><a href="#sum-and-product" id="markdown-toc-sum-and-product">Sum and product</a></li>
     </ul>
   </li>
+  <li><a href="#logic" id="markdown-toc-logic">Logic</a></li>
 </ul>
 
 </div>
@@ -335,6 +336,33 @@
 <p>Product takes $\prod$ all $x$’s from <script type="math/tex">X</script>, applies <script type="math/tex">f(x)</script> to each and multiplies all values:</p>
 
 <script type="math/tex; mode=display">\prod_{x\in X}f(x)=f(x_1)f(x_2)f(x_3)\dots</script>
+
+<h1 id="logic">Logic</h1>
+<p>Predicates can be thought of as a special type of function that returns a Boolean value true (<script type="math/tex">\text{true}</script> or <script type="math/tex">\top</script>) or false (<script type="math/tex">\text{false}</script> or <script type="math/tex">\bot</script>). Predicates can be thought of as asking or claiming whether or not a statement is true or false.</p>
+
+<p>For example, is <script type="math/tex">x</script> bigger than <script type="math/tex">2</script>? Is <script type="math/tex">a</script> a mammal and small? Is Emily your friend? Or, <script type="math/tex">x</script> is bigger than <script type="math/tex">2</script>, <script type="math/tex">a</script> is a mammal and small, and Emily is my friend.</p>
+
+<p>Let’s introduce some formal notation to express these statements:</p>
+
+<ul>
+  <li>Number comparisons are familiar to most <script type="math/tex">% <![CDATA[
+< %]]></script>, <script type="math/tex">\leq</script>, <script type="math/tex">></script>, <script type="math/tex">\geq</script>, <script type="math/tex">=</script>, and <script type="math/tex">\neq</script></li>
+  <li>Conjunctions (logical <script type="math/tex">\text{AND}</script>) <script type="math/tex">p\wedge q</script> is <script type="math/tex">\top</script> if and only if both <script type="math/tex">p=\top</script> and <script type="math/tex">q=\top</script></li>
+  <li>Disjunctions (logical <script type="math/tex">\text{OR}</script>) <script type="math/tex">p\vee q</script> is <script type="math/tex">\top</script> if <script type="math/tex">p=\top</script> or if <script type="math/tex">q=\top</script></li>
+  <li>Set membership can also be used as a predicate <script type="math/tex">a\in A</script> is <script type="math/tex">\top</script> if <script type="math/tex">a</script> is a member of set <script type="math/tex">A</script></li>
+</ul>
+
+<p>Sometimes we want to say something about all objects in a set. We can use quantifier predicates to do this. For example, are all animals in the set mammals? We use the <em>universal quantifier</em>:</p>
+
+<script type="math/tex; mode=display">\forall_{a\in A}\text{mammal}(a)</script>
+
+<p>You can read this as `does it hold for all objects <script type="math/tex">a</script> in <script type="math/tex">A</script> that <script type="math/tex">a</script> is a mammal?’ We implicitly introduced a function <script type="math/tex">\text{mammal}:A\rightarrow\{\top,\bot\}</script> with <script type="math/tex">\text{mammal}(a)=\top</script> if <script type="math/tex">a</script> is a mammal or <script type="math/tex">\bot</script> otherwise.</p>
+
+<p>Another type of question we can ask is, for example, is there someone I know that I like? We use the <em>existential quantifier</em>:</p>
+
+<script type="math/tex; mode=display">\exists_{p\in F_{me}}\left[\text{like}(p)>0\right]</script>
+
+<p>Which we can read as `does there exist a person <script type="math/tex">p</script> in the set of my friends <script type="math/tex">F_{me}</script> for which I like them <script type="math/tex">\text{like}(p)>0</script>?’</p>
 
 
   

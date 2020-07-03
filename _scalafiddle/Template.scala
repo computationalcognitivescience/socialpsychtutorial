@@ -148,9 +148,16 @@ case object VegaRenderer {
         } else if(plotType==PlotType.Line || plotType==PlotType.Point) {
           s"""
           "width": 300,
+          "transform": [
+            {
+              "bin": ${if(bin) "true" else "false"},
+              "field": "$xValue",
+              "as": "bin_$xValue"
+            }
+          ],
           "encoding": {
               "x": {
-                "field": "$xValue",
+                "field": "${if(bin) "bin_"+xValue else xValue}",
                 "type": "ordinal",
                 "axis": {"format": ".2f", "titlePadding": 20},
                 "title": "$xLabel"
@@ -163,7 +170,10 @@ case object VegaRenderer {
           },
           "layer": [
             {
-              "mark": "errorbar",
+              "mark": {
+                  "type": "errorbar",
+                  "extent": "ci"
+              },
               "encoding": {
                 "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"}
               }
@@ -263,7 +273,6 @@ case object VegaRenderer {
     """
   }
 }
-
 /**
   * Implementation of basic set theory as implicits
   */

@@ -49,11 +49,13 @@ val a = Person("A")
 val b = Person("B")
 val c = Person("C")
 val d = Person("D")
-val G = Set(a, b, c, d)
+val e = Person("E")
+val G = Set(a, b, c, d, e)
 val similarities = Set(
   Similarity(a, b, 1.0),
   Similarity(a, c, 2.0),
   Similarity(a, d, -1.0),
+  Similarity(a, e, 3.5),
   Similarity(b, c, -2.0),
   Similarity(b, d, 4.0),
   Similarity(c, d, -3.0)
@@ -100,17 +102,19 @@ val a = Person("A")
 val b = Person("B")
 val c = Person("C")
 val d = Person("D")
-val G = Set(a, b, c, d)
+val e = Person("E")
+val G = Set(a, b, c, d, e)
 val similarities = Set(
   Similarity(a, b, 1.0),
   Similarity(a, c, 2.0),
   Similarity(a, d, -1.0),
+  Similarity(a, e, 3.5),
   Similarity(b, c, -2.0),
   Similarity(b, d, 4.0),
   Similarity(c, d, -3.0)
 )
 def sim = similarities.deriveFun
-val s = 1.5
+val s = 2.5 // If you get no valid output, try lowering this value.
 
 val out = ps2(G, sim, s)
 

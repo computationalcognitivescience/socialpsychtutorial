@@ -65,14 +65,14 @@ We then perform some data analysis by computing a property of the input,
 viz. the ratio of likes and dislikes; and by computing two example dependent
 variables:
 
-1. The average number of pairs that like each other amongst invitees; and
+1. The average number of pairs that like each other amongst invitees;
 2. The number of invited guests.
 
 Try to play around with the parameters ```groupSize``` and ```sampleSize```
 and see what changes. For example, increasing the number of samples, decreases
-the variation in the data. *Note: Group size will require exponentially
-more computation time, don't try large values ($$>>15$$) unless you have time
-until the end of the universe.*
+the variation in the data. Errorbars report 96% confidence intervals.
+*Note: Group size will require exponentially more computation time, don't try
+large values ($$>>15$$) unless you have time until the end of the universe.*
 
 {% scalafiddle template="PersonsWithFormalisations", minheight="1000", layout="v50" %}
 ```scala
@@ -133,7 +133,7 @@ render(traces = List(Trace("SI4", si4Data), Trace("SI5", si5Data), Trace("SI6", 
       xLabel = "Likes / dislikes ratio in P",
       yValue = "avgLike",
       yLabel = "Average likes amongst invitees",
-      title = "Like/Dislike ratios",
+      title = "Average likes",
       plotType = PlotType.Point)
 
 render(traces = List(Trace("SI4", si4Data), Trace("SI5", si5Data), Trace("SI6", si6Data)),

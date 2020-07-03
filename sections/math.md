@@ -133,3 +133,29 @@ $$\sum_{x\in X}f(x)=f(x_1)+f(x_2)+f(x_3)+\dots$$
 Product takes $\prod$ all $x$'s from $$X$$, applies $$f(x)$$ to each and multiplies all values:
 
 $$\prod_{x\in X}f(x)=f(x_1)f(x_2)f(x_3)\dots$$
+
+
+# Logic
+Predicates can be thought of as a special type of function that returns a Boolean value true ($$\text{true}$$ or $$\top$$) or false ($$\text{false}$$ or $$\bot$$). Predicates can be thought of as asking or claiming whether or not a statement is true or false.
+
+For example, is $$x$$ bigger than $$2$$? Is $$a$$ a mammal and small? Is Emily your friend? Or, $$x$$ is bigger than $$2$$, $$a$$ is a mammal and small, and Emily is my friend.
+
+Let's introduce some formal notation to express these statements:
+
+
+* Number comparisons are familiar to most $$<$$, $$\leq$$, $$>$$, $$\geq$$, $$=$$, and $$\neq$$
+* Conjunctions (logical $$\text{AND}$$) $$p\wedge q$$ is $$\top$$ if and only if both $$p=\top$$ and $$q=\top$$
+* Disjunctions (logical $$\text{OR}$$) $$p\vee q$$ is $$\top$$ if $$p=\top$$ or if $$q=\top$$
+* Set membership can also be used as a predicate $$a\in A$$ is $$\top$$ if $$a$$ is a member of set $$A$$
+
+Sometimes we want to say something about all objects in a set. We can use quantifier predicates to do this. For example, are all animals in the set mammals? We use the _universal quantifier_:
+
+$$\forall_{a\in A}\text{mammal}(a)$$
+
+You can read this as `does it hold for all objects $$a$$ in $$A$$ that $$a$$ is a mammal?' We implicitly introduced a function $$\text{mammal}:A\rightarrow\{\top,\bot\}$$ with $$\text{mammal}(a)=\top$$ if $$a$$ is a mammal or $$\bot$$ otherwise.
+
+Another type of question we can ask is, for example, is there someone I know that I like? We use the _existential quantifier_:
+
+$$\exists_{p\in F_{me}}\left[\text{like}(p)>0\right]$$
+
+Which we can read as `does there exist a person $$p$$ in the set of my friends $$F_{me}$$ for which I like them $$\text{like}(p)>0$$?'

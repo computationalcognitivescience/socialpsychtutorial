@@ -3,7 +3,7 @@ layout: index
 title: Dialogue 1 - Comparing models
 permalink: /dialogue1_comparison/
 sidebar_link: true
-sidebar_sort_order: 5
+sidebar_sort_order: 4
 ---
 
 <div id="toc-wrapper" markdown="1">
@@ -20,7 +20,7 @@ may have noticed differences in behavior. If not, you can use the following
 code box to try different groups and see what selection of invitees each
 model makes.
 
-{% scalafiddle template="PersonsWithFormalisations" %}
+{% scalafiddle template="PersonsWithFormalisations", layout="v40" %}
 ```scala
 val (p1, p2, p3, p4, p5) = (Person("p1"), Person("p2"), Person("p3"), Person("p4"), Person("p5"))
 
@@ -74,7 +74,7 @@ the variation in the data. *Note: Group size will require exponentially
 more computation time, don't try large values ($$>>15$$) unless you have time
 until the end of the universe.*
 
-{% scalafiddle template="PersonsWithFormalisations" %}
+{% scalafiddle template="PersonsWithFormalisations", layout="v50" %}
 ```scala
 val groupSize = 5
 val sampleSize = 50

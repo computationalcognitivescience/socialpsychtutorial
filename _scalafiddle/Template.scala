@@ -15,7 +15,7 @@ case object VegaRenderer {
     def toVegaString: String = data.map(convertValues(label, _)).mkString(", ")
   }
 
-  case class Graph(nodes: List[Any], edges: List[(Any, Any, String)]) {
+  case class Graph(nodes: List[Any], edges: List[(Any, Any, String)], weighted: Boolean = false) {
     private def toVegaData: (Trace, Trace) = {
       val nDat: List[Map[String, Any]] = (nodes zip nodes.indices).map(ni => Map("lab" -> ni._1.toString, "id" -> ni._2, "maxId" -> nodes.length))
       val nodesTrace = Trace("node", nDat)
@@ -217,8 +217,8 @@ case object VegaRenderer {
                 "y2": {"field": "y2", "type": "quantitative"},
                 "color": {
                   "field": "lab",
-                  "type": "nominal",
-                  "scale": {"scheme": "set1"},
+                  "type": "${if(graph.weighted) "quantitative" else "nominal"}",
+                  "scale": {"scheme": "${if(graph.weighted) "viridis" else "set1"}"},
                   "legend": {"orient": "bottom", "title": null}
                 }
             }
@@ -298,6 +298,25 @@ case object VegaRenderer {
 
       def powerset: Set[Set[A]] = set.subsets.toSet
 
+      def allPartitionings: Set[Set[Set[A]]] = {
+        if(set.isEmpty) Set.empty
+        else{
+          val hd = set.head
+          val solutions = set.tail.allPartitionings
+          val part1 = if(solutions.isEmpty) Set(Set(Set(hd)))
+          else solutions.map(partitioning => {
+            partitioning + Set(hd)
+          })
+          val part2 = if(solutions.isEmpty) Set(Set(Set(hd)))
+          else solutions.flatMap(partitioning => partitioning.map(part => {
+            val a = part + hd
+            val b = partitioning - part
+            b + a
+          }))
+          part1.union(part2)
+        }
+      }
+
       def argMax(f: A => Double): Option[A] = {
         val seq = set.toSeq // convert to sequence to preserve ordering in zip function
         val valSeq = seq map f
@@ -316,7 +335,8 @@ case object VegaRenderer {
         else fallback
       }
 
-      def random: A = set.toList(Random.nextInt(set.size))
+      def random: Option[A] = if(set.isEmpty) None
+        else Some(set.toList(Random.nextInt(set.size)))
     }
 
     implicit class Impl2Set[A,B](sets: Tuple2[Set[A],Set[B]]) {

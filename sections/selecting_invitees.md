@@ -1,9 +1,9 @@
 ---
 layout: index
-title: Dialogue 1 - Individual models
+title: Dialogue 1 - Inviting guests
 permalink: /dialogue1/
 sidebar_link: true
-sidebar_sort_order: 4
+sidebar_sort_order: 3
 ---
 
 <div id="toc-wrapper" markdown="1">
@@ -11,7 +11,7 @@ sidebar_sort_order: 4
 {:toc}
 </div>
 
-On this page you can find three implementations of variants 4, 5 and 6 of
+On this page you can find implementations of variants 4, 5 and 6 of
 <span style="font-variant: small-caps;">Selecting invitees</span>. Included
 are the formalizations themselves and the code to run a simulation for them.
 You need to press the run button to run the simulation. This then also allows

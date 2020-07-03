@@ -1,15 +1,24 @@
 ---
 layout: index
-title: Dialogue 1 - Individual models
+title: Dialogue 1 - Inviting guests
 permalink: /dialogue1/
 sidebar_link: true
-sidebar_sort_order: 4
+sidebar_sort_order: 3
 ---
 
 <div id="toc-wrapper" markdown="1">
 * Table of contents
 {:toc}
 </div>
+
+On this page you can find implementations of variants 4, 5 and 6 of
+<span style="font-variant: small-caps;">Selecting invitees</span>. Included
+are the formalizations themselves and the code to run a simulation for them.
+You need to press the run button to run the simulation. This then also allows
+you to change the input of the simulation to explore the behavior of the
+models. You are encouraged to explore the simulations to your heart's content.
+Afterwards, you can [compare the models through analysis here](/socialpsychtutorial/dialogue1_comparison).
+
 
 # Selecting Invitees V4
 
@@ -19,7 +28,7 @@ sidebar_sort_order: 4
 
 <span>*Output:* $$G \subseteq P$$ such that $$|G\cap D| \leq k$$ and $$|X| + |G|$$ is maximized (where $$X = \{p_i,p_j \in G~|~like(p_i,p_j) = true \wedge i\neq j\}$$).</span>
 
-{% scalafiddle template="Persons", layout="v40" %}
+{% scalafiddle template="Persons", minheight="1000", layout="v45" %}
 ```scala
 def si4(P: Set[Person],
         L: Set[Person],
@@ -72,7 +81,7 @@ println(out)
 <span>*Output:* $$G \subseteq P$$ such that $$|G\cap L| + |X| + |G|$$ is maximized (where $$X = \{p_i,p_j \in G\}~|~like(p_i,p_j) = true  \wedge i\neq \}$$).</span>
 
 
-{% scalafiddle template="Persons", layout="v40" %}
+{% scalafiddle template="Persons", minheight="1000", layout="v45" %}
 ```scala
 def si5(P: Set[Person],
         L: Set[Person],
@@ -126,7 +135,7 @@ println(out)
 
 <span>*Output:* $$G \subseteq P$$ such that $$|Y| \leq k$$ and  $$|G\cap L|+|G|$$ is maximized (where $$Y = \{p_i,p_j \in G\}~|~like(p_i,p_j) = false \wedge i\neq j \}$$).</span>
 
-{% scalafiddle template="Persons", layout="v40" %}
+{% scalafiddle template="Persons", minheight="1000", layout="v45" %}
 ```scala
 def si6(P: Set[Person],
         L: Set[Person],

@@ -15,7 +15,7 @@ case object VegaRenderer {
     def toVegaString: String = data.map(convertValues(label, _)).mkString(", ")
   }
 
-  case class Graph(nodes: List[Any], edges: List[(Any, Any, String)]) {
+  case class Graph(nodes: List[Any], edges: List[(Any, Any, String)], weighted: Boolean = false) {
     private def toVegaData: (Trace, Trace) = {
       val nDat: List[Map[String, Any]] = (nodes zip nodes.indices).map(ni => Map("lab" -> ni._1.toString, "id" -> ni._2, "maxId" -> nodes.length))
       val nodesTrace = Trace("node", nDat)
@@ -79,7 +79,8 @@ case object VegaRenderer {
     yValue: String,
     yLabel: String,
     title: String,
-    plotType: PlotType = PlotType.Line): Unit =
+    plotType: PlotType = PlotType.Line,
+    bin: Boolean = false): Unit =
       render(
         genSpec(
           traces,
@@ -88,7 +89,8 @@ case object VegaRenderer {
           yValue,
           yLabel,
           title,
-          plotType
+          plotType,
+          bin
         )
       )
 
@@ -98,7 +100,8 @@ case object VegaRenderer {
     yValue: String,
     yLabel: String,
     title: String,
-    plotType: PlotType = PlotType.Line): String = {
+    plotType: PlotType = PlotType.Line,
+    bin: Boolean = false): String = {
       s"""
       "$$schema": "https://vega.github.io/schema/vega-lite/v4.json",
       "height": 340,
@@ -116,7 +119,7 @@ case object VegaRenderer {
           "width": 300,
           "mark": "bar",
           "encoding": {
-            "x": {"field": "$xValue", "type": "ordinal", "title": "$xLabel"},
+            "x": {"field": "$xValue", "type": "ordinal", "title": "$xLabel", "bin": ${if(bin) "true" else "false"}},
             "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"},
             "color": {
               "field": "label",
@@ -127,13 +130,13 @@ case object VegaRenderer {
           """
         } else if(plotType==PlotType.Bar && traces.length>1) {
           s"""
-          "width": 10,
+          "width": 40,
           "mark": "bar",
           "encoding": {
             "column": {
-              "field": "$xValue", "type": "nominal", "spacing": 0
+              "field": "$xValue", "title": "$xLabel", "type": "nominal", "spacing": 10, "bin": ${if(bin) "true" else "false"}
             },
-            "x": {"field": "label", "type": "ordinal", "axis": {"title": ""}},
+            "x": {"field": "label", "type": "ordinal", "axis": {"title": "label", "grid": false}},
             "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"},
             "color": {
               "field": "label",
@@ -145,9 +148,16 @@ case object VegaRenderer {
         } else if(plotType==PlotType.Line || plotType==PlotType.Point) {
           s"""
           "width": 300,
+          "transform": [
+            {
+              "bin": ${if(bin) "true" else "false"},
+              "field": "$xValue",
+              "as": "bin_$xValue"
+            }
+          ],
           "encoding": {
               "x": {
-                "field": "$xValue",
+                "field": "${if(bin) "bin_"+xValue else xValue}",
                 "type": "ordinal",
                 "axis": {"format": ".2f", "titlePadding": 20},
                 "title": "$xLabel"
@@ -160,7 +170,10 @@ case object VegaRenderer {
           },
           "layer": [
             {
-              "mark": "errorbar",
+              "mark": {
+                  "type": "errorbar",
+                  "extent": "ci"
+              },
               "encoding": {
                 "y": {"field": "$yValue", "type": "quantitative", "title": "$yLabel"}
               }
@@ -217,8 +230,8 @@ case object VegaRenderer {
                 "y2": {"field": "y2", "type": "quantitative"},
                 "color": {
                   "field": "lab",
-                  "type": "nominal",
-                  "scale": {"scheme": "set1"},
+                  "type": "${if(graph.weighted) "quantitative" else "nominal"}",
+                  "scale": {"scheme": "${if(graph.weighted) "viridis" else "set1"}"},
                   "legend": {"orient": "bottom", "title": null}
                 }
             }
@@ -260,7 +273,6 @@ case object VegaRenderer {
     """
   }
 }
-
 /**
   * Implementation of basic set theory as implicits
   */
@@ -298,6 +310,25 @@ case object VegaRenderer {
 
       def powerset: Set[Set[A]] = set.subsets.toSet
 
+      def allPartitionings: Set[Set[Set[A]]] = {
+        if(set.isEmpty) Set.empty
+        else{
+          val hd = set.head
+          val solutions = set.tail.allPartitionings
+          val part1 = if(solutions.isEmpty) Set(Set(Set(hd)))
+          else solutions.map(partitioning => {
+            partitioning + Set(hd)
+          })
+          val part2 = if(solutions.isEmpty) Set(Set(Set(hd)))
+          else solutions.flatMap(partitioning => partitioning.map(part => {
+            val a = part + hd
+            val b = partitioning - part
+            b + a
+          }))
+          part1.union(part2)
+        }
+      }
+
       def argMax(f: A => Double): Option[A] = {
         val seq = set.toSeq // convert to sequence to preserve ordering in zip function
         val valSeq = seq map f
@@ -316,7 +347,8 @@ case object VegaRenderer {
         else fallback
       }
 
-      def random: A = set.toList(Random.nextInt(set.size))
+      def random: Option[A] = if(set.isEmpty) None
+        else Some(set.toList(Random.nextInt(set.size)))
     }
 
     implicit class Impl2Set[A,B](sets: Tuple2[Set[A],Set[B]]) {
@@ -367,6 +399,17 @@ case class Relation(a: Person, b: Person, liking: Boolean) {
     }
 }
 
+case class Similarity(a: Person, b: Person, degree: Double) {
+  def canEqual(a: Any) = a.isInstanceOf[Relation]
+
+  override def equals(that: Any): Boolean = that match {
+      case that: Similarity => {
+          this.degree == that.degree && (this.a == that.a && this.b == that.b || this.a == that.b && this.b == that.a)
+      }
+      case _ => false
+  }
+}
+
 object Helpers {
   import Math._
 
@@ -393,6 +436,25 @@ object Helpers {
       Graph(persons.toList, edges.toList)
     }
   }
+
+  implicit class ImplSimFun(similarities: Set[Similarity]) {
+    def deriveFun: ((Person, Person) => Double) = {
+      (a: Person, b: Person) => {
+        val sim = similarities.find(p => p.a == a && p.b == b || p.a == b && p.b == a)
+        if(sim.isDefined) sim.get.degree
+        else 0.0
+      }
+    }
+
+    def deriveGraph(persons: Set[Person]): Graph = {
+      val edges = for(p1 <- persons; p2 <- persons if p1 != p2) yield {
+        val col = deriveFun(p1, p2).toString
+        (p1, p2, col)
+      }
+      Graph(persons.toList, edges.toList, true)
+    }
+  }
+
 }
 
 import Math._

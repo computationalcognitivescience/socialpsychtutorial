@@ -3,7 +3,7 @@ layout: index
 title: Dialogue 1 - Comparing models
 permalink: /dialogue1_comparison/
 sidebar_link: true
-sidebar_sort_order: 5
+sidebar_sort_order: 4
 ---
 
 <div id="toc-wrapper" markdown="1">
@@ -20,7 +20,7 @@ may have noticed differences in behavior. If not, you can use the following
 code box to try different groups and see what selection of invitees each
 model makes.
 
-{% scalafiddle template="PersonsWithFormalisations" %}
+{% scalafiddle template="PersonsWithFormalisations", minheight="1000", layout="v40" %}
 ```scala
 val (p1, p2, p3, p4, p5) = (Person("p1"), Person("p2"), Person("p3"), Person("p4"), Person("p5"))
 
@@ -65,19 +65,21 @@ We then perform some data analysis by computing a property of the input,
 viz. the ratio of likes and dislikes; and by computing two example dependent
 variables:
 
-1. The average number of pairs that like each other amongst invitees; and
+1. The average number of pairs that like each other amongst invitees;
 2. The number of invited guests.
 
 Try to play around with the parameters ```groupSize``` and ```sampleSize```
 and see what changes. For example, increasing the number of samples, decreases
-the variation in the data. *Note: Group size will require exponentially
-more computation time, don't try large values ($$>>15$$) unless you have time
-until the end of the universe.*
+the variation in the data. Errorbars report 96% confidence intervals.
+*Note: Group size will require exponentially more computation time, don't try
+large values ($$>>15$$) unless you have time until the end of the universe.*
 
-{% scalafiddle template="PersonsWithFormalisations" %}
+{% scalafiddle template="PersonsWithFormalisations", minheight="1000", layout="v50" %}
 ```scala
 val groupSize = 5
 val sampleSize = 50
+val k4 = 1
+val k6 = 2
 
 val P = List.tabulate(groupSize)(_ => Person.random).toSet
 
@@ -91,9 +93,9 @@ val results = for(trialNr <- 0 until sampleSize) yield {
     .map(pair => if(Random.nextBoolean) pair._1 like pair._2 else pair._1 dislike pair._2)
 
   // Three agents select invitees
-  val outputSI4 = si4(P, L, D, relations.deriveFun, 1)
+  val outputSI4 = si4(P, L, D, relations.deriveFun, k4)
   val outputSI5 = si5(P, L, D, relations.deriveFun)
-  val outputSI6 = si6(P, L, D, relations.deriveFun, 2)
+  val outputSI6 = si6(P, L, D, relations.deriveFun, k6)
 
   // Compute independent variables
   val nrLikes = relations.count(_.liking)
@@ -131,7 +133,7 @@ render(traces = List(Trace("SI4", si4Data), Trace("SI5", si5Data), Trace("SI6", 
       xLabel = "Likes / dislikes ratio in P",
       yValue = "avgLike",
       yLabel = "Average likes amongst invitees",
-      title = "Like/Dislike ratios",
+      title = "Average likes",
       plotType = PlotType.Point)
 
 render(traces = List(Trace("SI4", si4Data), Trace("SI5", si5Data), Trace("SI6", si6Data)),

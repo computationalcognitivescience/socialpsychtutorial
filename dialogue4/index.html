@@ -267,10 +267,10 @@ Afterwards, you can <a href="/socialpsychtutorial/dialogue4_comparison">compare 
 
 <p><em>Input:</em> A set of guests <script type="math/tex">G</script>, a function <script type="math/tex">sim: G \times G \rightarrow \mathbb{R}</script>, and threshold of satisfactory similarity <script type="math/tex">s \in \mathbb{R}</script>.</p>
 
-<p><em>Output:</em> A partition of $G$ into non-overlapping subsets <script type="math/tex">G_1, G_2, ..., G_k</script> where each partition has satisfactory ingroup similarity:
+<p><em>Output:</em> A partition of <script type="math/tex">G</script> into non-overlapping subsets <script type="math/tex">G_1, G_2, ..., G_k</script> where each partition has satisfactory ingroup similarity:
 <script type="math/tex">\forall_{i=1,2,\dots k}\left[sim(G_i) \geq s\right]</script></p>
 
-<p>Where ingroup similarity for subset $G_i$ is defined as mean pair-wise similarity:
+<p>Where ingroup similarity for subset <script type="math/tex">G_i</script> is defined as mean pair-wise similarity:
 <script type="math/tex">sim(G_i)=\frac{1}{|G_i|}\sum_{g_i, g_j \in G_i} sim(g_i, g_j)</script></p>
 
 <div data-scalafiddle="" data-template="Persons" data-minheight="1000" data-layout="v45">

@@ -11,8 +11,8 @@ sidebar_sort_order: 6
 {:toc}
 </div>
 
-We take two approaches to analyze differences in model behavior. First, we
-explore model behavior by hand. Second, we explore it by large scale simulation.
+Here you can take two approaches to analyze differences in model behavior. First,
+explore model behavior by hand. Second, explore it by large scale simulation.
 
 # Comparing model behavior by hand
 If you were already comparing the two models on the previous page, you
@@ -56,7 +56,7 @@ println(s"PS2 forms: $out2")
 # Comparing model behaviour large scale
 
 In the simulation experiment below, we randomly create groups of people and
-their similarity relationships. For each group of friends generated, we
+randomly assign similarity relationships between $$[$$```minSimilarity```$$,$$```maxSimilarity```$$]$$. For each group of friends generated, we
 apply the two party subgrouping models resulting in two (possibly different)
 outputs.
 
@@ -67,17 +67,21 @@ variables:
 1. The mean ingroup similarity of the formed groups;
 2. The number of groups that are formed.
 
-Errorbars report 96% confidence intervals. *Note: Group size will require exponentially
+Try to play around with the parameters, e.g., ```groupSize```, ```sampleSize```,
+and ```s```, and see what changes. For example, increasing the number of samples, decreases
+the variation in the data. Error bars report 95% confidence intervals. *Note: Group size will require exponentially
 more computation time, don't try large values ($$>7$$) unless you have time
 until the end of the universe.*
 
 {% scalafiddle template="PersonsWithFormalisations" %}
 ```scala
-val groupSize = 6
 val sampleSize = 100
-val k = 0.6
-val minSimilarity = -4
+
+val groupSize = 6
+val minSimilarity = -2
 val maxSimilarity = 4
+val s = 1.0
+
 
 val P = List.tabulate(groupSize)(_ => Person.random).toSet
 
@@ -93,7 +97,7 @@ val results = for(trialNr <- 0 until sampleSize) yield {
 
   // Three agents select invitees
   val outputPS1 = ps1(P, sim)
-  val outputPS2 = ps2(P, sim, k)
+  val outputPS2 = ps2(P, sim, s)
 
   // Compute independent variables
   val meanSimilarity = similarities.map(_.degree).sum / P.size

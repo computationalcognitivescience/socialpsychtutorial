@@ -11,8 +11,8 @@ sidebar_sort_order: 4
 {:toc}
 </div>
 
-We take two approaches to analyze differences in model behavior. First, we
-explore model behavior by hand. Second, we explore it by large scale simulation.
+Here you can take two approaches to analyze differences in model behavior. First,
+explore model behavior by hand. Second, explore it by large scale simulation.
 
 # Comparing model behavior by hand
 If you were already comparing the three models on the previous page, you
@@ -68,9 +68,9 @@ variables:
 1. The average number of pairs that like each other amongst invitees;
 2. The number of invited guests.
 
-Try to play around with the parameters ```groupSize``` and ```sampleSize```
+Try to play around with the parameters, e.g., ```groupSize``` and ```sampleSize```,
 and see what changes. For example, increasing the number of samples, decreases
-the variation in the data. Errorbars report 96% confidence intervals.
+the variation in the data. Error bars report 95% confidence intervals.
 *Note: Group size will require exponentially more computation time, don't try
 large values ($$>>15$$) unless you have time until the end of the universe.*
 

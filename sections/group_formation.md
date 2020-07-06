@@ -27,7 +27,7 @@ Afterwards, you can [compare the models through analysis here](/socialpsychtutor
 *Input:* A set of guests $$G$$ and a function $$sim: G \times G \rightarrow \mathbb{R}$$.
 
 *Output:* A partition of $$G$$ into non-overlapping subsets $$G_1, G_2, ..., G_k$$ that maximizes average ingroup similarity:
-$$\frac{1}{k}\sum_{i=1,2,\dots k}sim(G_i) $$
+$$\frac{1}{k}\sum_{i=1,2,\dots k}sim(G_i)$$
 
 Where ingroup similarity for subset $$G_i$$ is defined as mean pair-wise similarity:
 $$sim(G_i)=\frac{1}{|G_i|}\sum_{g_i, g_j \in G_i} sim(g_i, g_j)$$
@@ -79,10 +79,10 @@ println(out)
 
 *Input:* A set of guests $$G$$, a function $$sim: G \times G \rightarrow \mathbb{R}$$, and threshold of satisfactory similarity $$s \in \mathbb{R}$$.
 
-*Output:* A partition of $G$ into non-overlapping subsets $$G_1, G_2, ..., G_k$$ where each partition has satisfactory ingroup similarity:
+*Output:* A partition of $$G$$ into non-overlapping subsets $$G_1, G_2, ..., G_k$$ where each partition has satisfactory ingroup similarity:
 $$\forall_{i=1,2,\dots k}\left[sim(G_i) \geq s\right]$$
 
-Where ingroup similarity for subset $G_i$ is defined as mean pair-wise similarity:
+Where ingroup similarity for subset $$G_i$$ is defined as mean pair-wise similarity:
 $$sim(G_i)=\frac{1}{|G_i|}\sum_{g_i, g_j \in G_i} sim(g_i, g_j)$$
 
 {% scalafiddle template="Persons", minheight="1000", layout="v45" %}

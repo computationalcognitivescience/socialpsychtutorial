@@ -11,7 +11,7 @@ sidebar_sort_order: 2
 {:toc}
 </div>
 
-For your convenience we have added the math concepts and notations here too.
+For your convenience, here are again the math concepts and notations from the [paper](https://psyarxiv.com/r2zqy).
 
 # Set theory
 A set is a collection of distinct objects. For example, a set of people $$P=\{\text{Ramiro},\text{Brenda},\text{Molly}\}$$, animals $$A=\{\text{cat},\text{turtle},\text{blue whale}, \text{cuttlefish}\}$$ or numbers N=\{1,5,7,12\}. Sets are usually denoted by a capital letter and their elements listed between curly brackets. They can also be visualized as circles.

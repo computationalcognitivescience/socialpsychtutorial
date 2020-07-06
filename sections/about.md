@@ -16,7 +16,7 @@ sidebar_sort_order: 1
 
 > Dear Dr. *Verbal*,
 
->Welcome! I have created this online space to share with you (and others who may be interested) the implementations of the theoretical models that we developed together in our Dialogue 1 and Dialogue 4 in [this paper]().
+>Welcome! I have created this online space to share with you (and others who may be interested) the implementations of the theoretical models that we developed together in our Dialogue 1 and Dialogue 4 in [this paper](https://psyarxiv.com/r2zqy).
 
 > You can browse the Table of Contents on the sidebar. Check out the different individual models and explore different parameter settings. You can also run the Scala code and perform some simulations. Have a look at the simulation results to better understand differences between the models and how you may be able to test and compare them empirically.
 
@@ -30,13 +30,13 @@ This site is released under a [CC-BY 4.0 license](https://creativecommons.org/li
 This site is created with [Jekyll](https://jekyllrb.com) using the [Jekyll-Hydeout](https://github.com/fongandrew/hydeout) theme released under an [MIT license](https://github.com/fongandrew/hydeout/blob/master/LICENSE.md). The source code is available on Github [here](https://github.com/computationalcognitivescience/socialpsychtutorial/).
 
 # Main paper
-van Rooij, I. & Blokpoel, M. (2020). Formalising verbal theories: A tutorial by dialogue. [Preprint]()
+van Rooij, I., & Blokpoel, M. (2020). Formalizing verbal theories: A tutorial by dialogue. Retrieved from [https://psyarxiv.com/r2zqy](https://psyarxiv.com/r2zqy)
 
 
 # About the authors
 [Iris van Rooij](irisvanrooijcogsci.com) is a psychologist and cognitive scientist. [Mark Blokpoel](http://www.markblokpoel.com) is a computer scientist and computational cognitive scientist.
 
-Both authors are based at Donders Institute for Brain, Cognition, and Behaviour, Radboud University. Van Rooij and Blokpoel previously co-authored [Cognition and Intractability](https://cognitionandintractability.com) with Johan Kwisthout and Todd Wareham. You can download [Chapter 1]() for free.
+Both authors are based at Donders Institute for Brain, Cognition, and Behaviour, Radboud University. Van Rooij and Blokpoel previously co-authored [Cognition and Intractability](https://cognitionandintractability.com) with Johan Kwisthout and Todd Wareham. You can download [Chapter 1](http://metatheorist.com/Chapter-1-freely-available/) for free.
 
 # Acknowledgements
 This work has been made possible by a [Distinguished Lorentz Fellowship (DLF)](http://metatheorist.com/Distinguished-Lorentz-Fellowship/) awarded by [NIAS](https://nias.knaw.nl) and the [Lorentz Center](https://www.lorentzcenter.nl) to Van Rooij and a [Language in Interaction](https://www.languageininteraction.nl) grant (nr. 024.001.006) supporting Blokpoel.

@@ -11,6 +11,15 @@ sidebar_sort_order: 4
 {:toc}
 </div>
 
+<div class="warning" style='max-width: 100%;background-color:#DF7777; color: #000; border-left: solid #a00000 4px; border-radius: 4px; padding-right: 2em;'>
+<span>
+<p style='width: 100%;margin-top:1em; text-align:center'>
+<b>Interactive code offline</b></p>
+<p style='width: calc(100% - 1em);margin-left: 1em;'>
+Due to the discontinuation of <a href="https://www.scalafiddle.com">www.scalafiddle.com</a>, the code blocks on this website are currently not interactive. We regret the limitations this imposes and are working on a solution.
+</p></span>
+</div>
+
 Here you can take two approaches to analyze differences in model behavior. First,
 explore model behavior by hand. Second, explore it by large scale simulation.
 
